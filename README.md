@@ -1,9 +1,11 @@
 # Kafe Otomasyon
+<p align="center">
+<img src="https://raw.githubusercontent.com/baranac12/CafeOtomasyon/master/icons/logo.PNG" height =150/>
+</p>
 
 ### Tanıtım Video :
 --------
-
-    [![Alt text](https://i.ytimg.com/vi/R2OYs7IA08U/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDrdUPSUTbupvOAzQSy0b7pf2OujA)](https://www.youtube.com/watch?v=R2OYs7IA08U)
+[![](https://i.ytimg.com/vi/R2OYs7IA08U/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDrdUPSUTbupvOAzQSy0b7pf2OujA)](https://www.youtube.com/watch?v=R2OYs7IA08U)
 
 
 
