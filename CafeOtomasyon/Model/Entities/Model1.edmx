@@ -1,0 +1,916 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="kafe_otomasyonDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Hesap">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiparisId" Type="int" Nullable="false" />
+          <Property Name="ToplamTutar" Type="money" Nullable="false" />
+          <Property Name="OdemeId" Type="int" Nullable="false" />
+          <Property Name="KullaniciId" Type="int" Nullable="false" />
+          <Property Name="Tarih" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="İçecekKategori">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="İçecekler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KategoriId" Type="int" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fiyat" Type="money" Nullable="false" />
+          <Property Name="Durum" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="kullanici">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="YetkiId" Type="int" Nullable="false" />
+          <Property Name="MasaNo" Type="int" />
+          <Property Name="İsim" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Soyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="11" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parola" Type="nvarchar" MaxLength="50" />
+          <Property Name="Durumu" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Masa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MasaNo" Type="char" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OdemeTuru">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tur" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Siparis">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="YemekId" Type="int" />
+          <Property Name="TatliId" Type="int" />
+          <Property Name="İcecekId" Type="int" />
+          <Property Name="MasaNo" Type="int" Nullable="false" />
+          <Property Name="KullaniciId" Type="int" Nullable="false" />
+          <Property Name="Durum" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Tutar" Type="money" Nullable="false" />
+          <Property Name="Tür" Type="int" />
+          <Property Name="VerilmeTarihi" Type="datetime" />
+          <Property Name="TeslimTarihi" Type="datetime" />
+          <Property Name="OnaylanmaTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SiparisDurumu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiparisId" Type="int" Nullable="false" />
+          <Property Name="Durum" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="SiparisAlınmaTarih" Type="datetime" />
+          <Property Name="SiparisHazırlanmaTarih" Type="datetime" />
+          <Property Name="TeslimEdilmeTarih" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tatlı">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="İçindekiler" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Fiyat" Type="money" Nullable="false" />
+          <Property Name="Durum" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Yemek">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KategoriId" Type="int" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="İçindekiler" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Fiyat" Type="money" Nullable="false" />
+          <Property Name="Durum" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="YemekKategori">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kategori" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Yetki">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="YetkiAdi" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Hesap_kullanici">
+          <End Role="kullanici" Type="Self.kullanici" Multiplicity="1" />
+          <End Role="Hesap" Type="Self.Hesap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kullanici">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Hesap">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hesap_OdemeTuru">
+          <End Role="OdemeTuru" Type="Self.OdemeTuru" Multiplicity="1" />
+          <End Role="Hesap" Type="Self.Hesap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OdemeTuru">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Hesap">
+              <PropertyRef Name="OdemeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hesap_Siparis">
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="1" />
+          <End Role="Hesap" Type="Self.Hesap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Siparis">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Hesap">
+              <PropertyRef Name="SiparisId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_İçecekler_İçecekKategori">
+          <End Role="İçecekKategori" Type="Self.İçecekKategori" Multiplicity="1" />
+          <End Role="İçecekler" Type="Self.İçecekler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="İçecekKategori">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="İçecekler">
+              <PropertyRef Name="KategoriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kullanici_Masa">
+          <End Role="Masa" Type="Self.Masa" Multiplicity="0..1" />
+          <End Role="kullanici" Type="Self.kullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Masa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="kullanici">
+              <PropertyRef Name="MasaNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kullanici_Yetki">
+          <End Role="Yetki" Type="Self.Yetki" Multiplicity="1" />
+          <End Role="kullanici" Type="Self.kullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yetki">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="kullanici">
+              <PropertyRef Name="YetkiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_İçecekler">
+          <End Role="İçecekler" Type="Self.İçecekler" Multiplicity="0..1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="İçecekler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="İcecekId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_kullanici">
+          <End Role="kullanici" Type="Self.kullanici" Multiplicity="1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kullanici">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_Masa">
+          <End Role="Masa" Type="Self.Masa" Multiplicity="1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Masa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="MasaNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_Tatlı">
+          <End Role="Tatlı" Type="Self.Tatlı" Multiplicity="0..1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tatlı">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="TatliId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_Yemek">
+          <End Role="Yemek" Type="Self.Yemek" Multiplicity="0..1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yemek">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="YemekId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiparisDurumu_Siparis">
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="1" />
+          <End Role="SiparisDurumu" Type="Self.SiparisDurumu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Siparis">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SiparisDurumu">
+              <PropertyRef Name="SiparisId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yemek_YemekKategori">
+          <End Role="YemekKategori" Type="Self.YemekKategori" Multiplicity="1" />
+          <End Role="Yemek" Type="Self.Yemek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="YemekKategori">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Yemek">
+              <PropertyRef Name="KategoriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="kafe_otomasyonDBModelStoreContainer">
+          <EntitySet Name="Hesap" EntityType="Self.Hesap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="İçecekKategori" EntityType="Self.İçecekKategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="İçecekler" EntityType="Self.İçecekler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kullanici" EntityType="Self.kullanici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Masa" EntityType="Self.Masa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OdemeTuru" EntityType="Self.OdemeTuru" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Siparis" EntityType="Self.Siparis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SiparisDurumu" EntityType="Self.SiparisDurumu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tatlı" EntityType="Self.Tatlı" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yemek" EntityType="Self.Yemek" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YemekKategori" EntityType="Self.YemekKategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yetki" EntityType="Self.Yetki" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Hesap_kullanici" Association="Self.FK_Hesap_kullanici">
+            <End Role="kullanici" EntitySet="kullanici" />
+            <End Role="Hesap" EntitySet="Hesap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hesap_OdemeTuru" Association="Self.FK_Hesap_OdemeTuru">
+            <End Role="OdemeTuru" EntitySet="OdemeTuru" />
+            <End Role="Hesap" EntitySet="Hesap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hesap_Siparis" Association="Self.FK_Hesap_Siparis">
+            <End Role="Siparis" EntitySet="Siparis" />
+            <End Role="Hesap" EntitySet="Hesap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_İçecekler_İçecekKategori" Association="Self.FK_İçecekler_İçecekKategori">
+            <End Role="İçecekKategori" EntitySet="İçecekKategori" />
+            <End Role="İçecekler" EntitySet="İçecekler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kullanici_Masa" Association="Self.FK_kullanici_Masa">
+            <End Role="Masa" EntitySet="Masa" />
+            <End Role="kullanici" EntitySet="kullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kullanici_Yetki" Association="Self.FK_kullanici_Yetki">
+            <End Role="Yetki" EntitySet="Yetki" />
+            <End Role="kullanici" EntitySet="kullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_İçecekler" Association="Self.FK_Siparis_İçecekler">
+            <End Role="İçecekler" EntitySet="İçecekler" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_kullanici" Association="Self.FK_Siparis_kullanici">
+            <End Role="kullanici" EntitySet="kullanici" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_Masa" Association="Self.FK_Siparis_Masa">
+            <End Role="Masa" EntitySet="Masa" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_Tatlı" Association="Self.FK_Siparis_Tatlı">
+            <End Role="Tatlı" EntitySet="Tatlı" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_Yemek" Association="Self.FK_Siparis_Yemek">
+            <End Role="Yemek" EntitySet="Yemek" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiparisDurumu_Siparis" Association="Self.FK_SiparisDurumu_Siparis">
+            <End Role="Siparis" EntitySet="Siparis" />
+            <End Role="SiparisDurumu" EntitySet="SiparisDurumu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yemek_YemekKategori" Association="Self.FK_Yemek_YemekKategori">
+            <End Role="YemekKategori" EntitySet="YemekKategori" />
+            <End Role="Yemek" EntitySet="Yemek" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="kafe_otomasyonDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Hesap">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiparisId" Type="Int32" Nullable="false" />
+          <Property Name="ToplamTutar" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OdemeId" Type="Int32" Nullable="false" />
+          <Property Name="KullaniciId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Siparis" Relationship="Self.FK_Hesap_Siparis" FromRole="Hesap" ToRole="Siparis" />
+          <NavigationProperty Name="OdemeTuru" Relationship="kafe_otomasyonDBModel.FK_Hesap_OdemeTuru" FromRole="Hesap" ToRole="OdemeTuru" />
+          <NavigationProperty Name="kullanici" Relationship="kafe_otomasyonDBModel.FK_Hesap_kullanici" FromRole="Hesap" ToRole="kullanici" />
+        </EntityType>
+        <EntityType Name="İçecekKategori">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="İçecekler" Relationship="Self.FK_İçecekler_İçecekKategori" FromRole="İçecekKategori" ToRole="İçecekler" />
+        </EntityType>
+        <EntityType Name="İçecekler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KategoriId" Type="Int32" Nullable="false" />
+          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fiyat" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Durum" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="İçecekKategori" Relationship="Self.FK_İçecekler_İçecekKategori" FromRole="İçecekler" ToRole="İçecekKategori" />
+          <NavigationProperty Name="Siparis" Relationship="Self.FK_Siparis_İçecekler" FromRole="İçecekler" ToRole="Siparis" />
+        </EntityType>
+        <EntityType Name="kullanici">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="YetkiId" Type="Int32" Nullable="false" />
+          <Property Name="MasaNo" Type="Int32" />
+          <Property Name="İsim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefon" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parola" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Durumu" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Masa" Relationship="Self.FK_kullanici_Masa" FromRole="kullanici" ToRole="Masa" />
+          <NavigationProperty Name="Yetki" Relationship="Self.FK_kullanici_Yetki" FromRole="kullanici" ToRole="Yetki" />
+          <NavigationProperty Name="Siparis" Relationship="Self.FK_Siparis_kullanici" FromRole="kullanici" ToRole="Siparis" />
+          <NavigationProperty Name="Hesap" Relationship="kafe_otomasyonDBModel.FK_Hesap_kullanici" FromRole="kullanici" ToRole="Hesap" />
+        </EntityType>
+        <EntityType Name="Masa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MasaNo" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="kullanici" Relationship="Self.FK_kullanici_Masa" FromRole="Masa" ToRole="kullanici" />
+          <NavigationProperty Name="Siparis" Relationship="Self.FK_Siparis_Masa" FromRole="Masa" ToRole="Siparis" />
+        </EntityType>
+        <EntityType Name="OdemeTuru">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tur" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Hesap" Relationship="kafe_otomasyonDBModel.FK_Hesap_OdemeTuru" FromRole="OdemeTuru" ToRole="Hesap" />
+        </EntityType>
+        <EntityType Name="Siparis">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="YemekId" Type="Int32" />
+          <Property Name="TatliId" Type="Int32" />
+          <Property Name="İcecekId" Type="Int32" />
+          <Property Name="MasaNo" Type="Int32" Nullable="false" />
+          <Property Name="KullaniciId" Type="Int32" Nullable="false" />
+          <Property Name="Durum" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Tutar" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Tür" Type="Int32" />
+          <NavigationProperty Name="Hesap" Relationship="Self.FK_Hesap_Siparis" FromRole="Siparis" ToRole="Hesap" />
+          <NavigationProperty Name="İçecekler" Relationship="Self.FK_Siparis_İçecekler" FromRole="Siparis" ToRole="İçecekler" />
+          <NavigationProperty Name="kullanici" Relationship="Self.FK_Siparis_kullanici" FromRole="Siparis" ToRole="kullanici" />
+          <NavigationProperty Name="Masa" Relationship="Self.FK_Siparis_Masa" FromRole="Siparis" ToRole="Masa" />
+          <NavigationProperty Name="Tatlı" Relationship="Self.FK_Siparis_Tatlı" FromRole="Siparis" ToRole="Tatlı" />
+          <NavigationProperty Name="Yemek" Relationship="Self.FK_Siparis_Yemek" FromRole="Siparis" ToRole="Yemek" />
+          <NavigationProperty Name="SiparisDurumu" Relationship="Self.FK_SiparisDurumu_Siparis" FromRole="Siparis" ToRole="SiparisDurumu" />
+          <Property Name="VerilmeTarihi" Type="DateTime" Precision="3" />
+          <Property Name="TeslimTarihi" Type="DateTime" Precision="3" />
+          <Property Name="OnaylanmaTarihi" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SiparisDurumu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiparisId" Type="Int32" Nullable="false" />
+          <Property Name="Durum" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Siparis" Relationship="Self.FK_SiparisDurumu_Siparis" FromRole="SiparisDurumu" ToRole="Siparis" />
+          <Property Name="SiparisAlınmaTarih" Type="DateTime" Precision="3" />
+          <Property Name="SiparisHazırlanmaTarih" Type="DateTime" Precision="3" />
+          <Property Name="TeslimEdilmeTarih" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tatlı">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="İçindekiler" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fiyat" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Durum" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Siparis" Relationship="Self.FK_Siparis_Tatlı" FromRole="Tatlı" ToRole="Siparis" />
+        </EntityType>
+        <EntityType Name="Yemek">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KategoriId" Type="Int32" Nullable="false" />
+          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="İçindekiler" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fiyat" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Durum" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Siparis" Relationship="Self.FK_Siparis_Yemek" FromRole="Yemek" ToRole="Siparis" />
+          <NavigationProperty Name="YemekKategori" Relationship="Self.FK_Yemek_YemekKategori" FromRole="Yemek" ToRole="YemekKategori" />
+        </EntityType>
+        <EntityType Name="YemekKategori">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kategori" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Yemek" Relationship="Self.FK_Yemek_YemekKategori" FromRole="YemekKategori" ToRole="Yemek" />
+        </EntityType>
+        <EntityType Name="Yetki">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="YetkiAdi" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="kullanici" Relationship="Self.FK_kullanici_Yetki" FromRole="Yetki" ToRole="kullanici" />
+        </EntityType>
+        <Association Name="FK_Hesap_Siparis">
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="1" />
+          <End Role="Hesap" Type="Self.Hesap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Siparis">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Hesap">
+              <PropertyRef Name="SiparisId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_İçecekler_İçecekKategori">
+          <End Role="İçecekKategori" Type="Self.İçecekKategori" Multiplicity="1" />
+          <End Role="İçecekler" Type="Self.İçecekler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="İçecekKategori">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="İçecekler">
+              <PropertyRef Name="KategoriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_İçecekler">
+          <End Role="İçecekler" Type="Self.İçecekler" Multiplicity="0..1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="İçecekler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="İcecekId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kullanici_Masa">
+          <End Role="Masa" Type="Self.Masa" Multiplicity="0..1" />
+          <End Role="kullanici" Type="Self.kullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Masa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="kullanici">
+              <PropertyRef Name="MasaNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kullanici_Yetki">
+          <End Role="Yetki" Type="Self.Yetki" Multiplicity="1" />
+          <End Role="kullanici" Type="Self.kullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yetki">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="kullanici">
+              <PropertyRef Name="YetkiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_kullanici">
+          <End Role="kullanici" Type="Self.kullanici" Multiplicity="1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kullanici">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_Masa">
+          <End Role="Masa" Type="Self.Masa" Multiplicity="1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Masa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="MasaNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_Tatlı">
+          <End Role="Tatlı" Type="Self.Tatlı" Multiplicity="0..1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tatlı">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="TatliId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_Yemek">
+          <End Role="Yemek" Type="Self.Yemek" Multiplicity="0..1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yemek">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="YemekId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiparisDurumu_Siparis">
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="1" />
+          <End Role="SiparisDurumu" Type="Self.SiparisDurumu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Siparis">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SiparisDurumu">
+              <PropertyRef Name="SiparisId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yemek_YemekKategori">
+          <End Role="YemekKategori" Type="Self.YemekKategori" Multiplicity="1" />
+          <End Role="Yemek" Type="Self.Yemek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="YemekKategori">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Yemek">
+              <PropertyRef Name="KategoriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="kafe_otomasyonDBEntities4" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Hesap" EntityType="Self.Hesap" />
+          <EntitySet Name="İçecekKategori" EntityType="Self.İçecekKategori" />
+          <EntitySet Name="İçecekler" EntityType="Self.İçecekler" />
+          <EntitySet Name="kullanici" EntityType="Self.kullanici" />
+          <EntitySet Name="Masa" EntityType="Self.Masa" />
+          <EntitySet Name="OdemeTuru" EntityType="Self.OdemeTuru" />
+          <EntitySet Name="Siparis" EntityType="Self.Siparis" />
+          <EntitySet Name="SiparisDurumu" EntityType="Self.SiparisDurumu" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Tatlı" EntityType="Self.Tatlı" />
+          <EntitySet Name="Yemek" EntityType="Self.Yemek" />
+          <EntitySet Name="YemekKategori" EntityType="Self.YemekKategori" />
+          <EntitySet Name="Yetki" EntityType="Self.Yetki" />
+          <AssociationSet Name="FK_Hesap_Siparis" Association="Self.FK_Hesap_Siparis">
+            <End Role="Siparis" EntitySet="Siparis" />
+            <End Role="Hesap" EntitySet="Hesap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_İçecekler_İçecekKategori" Association="Self.FK_İçecekler_İçecekKategori">
+            <End Role="İçecekKategori" EntitySet="İçecekKategori" />
+            <End Role="İçecekler" EntitySet="İçecekler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_İçecekler" Association="Self.FK_Siparis_İçecekler">
+            <End Role="İçecekler" EntitySet="İçecekler" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kullanici_Masa" Association="Self.FK_kullanici_Masa">
+            <End Role="Masa" EntitySet="Masa" />
+            <End Role="kullanici" EntitySet="kullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kullanici_Yetki" Association="Self.FK_kullanici_Yetki">
+            <End Role="Yetki" EntitySet="Yetki" />
+            <End Role="kullanici" EntitySet="kullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_kullanici" Association="Self.FK_Siparis_kullanici">
+            <End Role="kullanici" EntitySet="kullanici" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_Masa" Association="Self.FK_Siparis_Masa">
+            <End Role="Masa" EntitySet="Masa" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_Tatlı" Association="Self.FK_Siparis_Tatlı">
+            <End Role="Tatlı" EntitySet="Tatlı" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_Yemek" Association="Self.FK_Siparis_Yemek">
+            <End Role="Yemek" EntitySet="Yemek" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiparisDurumu_Siparis" Association="Self.FK_SiparisDurumu_Siparis">
+            <End Role="Siparis" EntitySet="Siparis" />
+            <End Role="SiparisDurumu" EntitySet="SiparisDurumu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yemek_YemekKategori" Association="Self.FK_Yemek_YemekKategori">
+            <End Role="YemekKategori" EntitySet="YemekKategori" />
+            <End Role="Yemek" EntitySet="Yemek" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hesap_OdemeTuru" Association="kafe_otomasyonDBModel.FK_Hesap_OdemeTuru">
+            <End Role="OdemeTuru" EntitySet="OdemeTuru" />
+            <End Role="Hesap" EntitySet="Hesap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hesap_kullanici" Association="kafe_otomasyonDBModel.FK_Hesap_kullanici">
+            <End Role="kullanici" EntitySet="kullanici" />
+            <End Role="Hesap" EntitySet="Hesap" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_Hesap_OdemeTuru">
+          <End Type="kafe_otomasyonDBModel.OdemeTuru" Role="OdemeTuru" Multiplicity="1" />
+          <End Type="kafe_otomasyonDBModel.Hesap" Role="Hesap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OdemeTuru">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Hesap">
+              <PropertyRef Name="OdemeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hesap_kullanici">
+          <End Type="kafe_otomasyonDBModel.kullanici" Role="kullanici" Multiplicity="1" />
+          <End Type="kafe_otomasyonDBModel.Hesap" Role="Hesap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kullanici">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Hesap">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="kafe_otomasyonDBModelStoreContainer" CdmEntityContainer="kafe_otomasyonDBEntities4">
+          <EntitySetMapping Name="Hesap">
+            <EntityTypeMapping TypeName="kafe_otomasyonDBModel.Hesap">
+              <MappingFragment StoreEntitySet="Hesap">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="SiparisId" ColumnName="SiparisId" />
+                <ScalarProperty Name="ToplamTutar" ColumnName="ToplamTutar" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="OdemeId" ColumnName="OdemeId" />
+                <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="İçecekKategori">
+            <EntityTypeMapping TypeName="kafe_otomasyonDBModel.İçecekKategori">
+              <MappingFragment StoreEntitySet="İçecekKategori">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="İçecekler">
+            <EntityTypeMapping TypeName="kafe_otomasyonDBModel.İçecekler">
+              <MappingFragment StoreEntitySet="İçecekler">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="KategoriId" ColumnName="KategoriId" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kullanici">
+            <EntityTypeMapping TypeName="kafe_otomasyonDBModel.kullanici">
+              <MappingFragment StoreEntitySet="kullanici">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="YetkiId" ColumnName="YetkiId" />
+                <ScalarProperty Name="MasaNo" ColumnName="MasaNo" />
+                <ScalarProperty Name="İsim" ColumnName="İsim" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="KAdi" ColumnName="KAdi" />
+                <ScalarProperty Name="Parola" ColumnName="Parola" />
+                <ScalarProperty Name="Durumu" ColumnName="Durumu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Masa">
+            <EntityTypeMapping TypeName="kafe_otomasyonDBModel.Masa">
+              <MappingFragment StoreEntitySet="Masa">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MasaNo" ColumnName="MasaNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OdemeTuru">
+            <EntityTypeMapping TypeName="kafe_otomasyonDBModel.OdemeTuru">
+              <MappingFragment StoreEntitySet="OdemeTuru">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Tur" ColumnName="Tur" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Siparis">
+            <EntityTypeMapping TypeName="kafe_otomasyonDBModel.Siparis">
+              <MappingFragment StoreEntitySet="Siparis">
+                <ScalarProperty Name="OnaylanmaTarihi" ColumnName="OnaylanmaTarihi" />
+                <ScalarProperty Name="TeslimTarihi" ColumnName="TeslimTarihi" />
+                <ScalarProperty Name="VerilmeTarihi" ColumnName="VerilmeTarihi" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="YemekId" ColumnName="YemekId" />
+                <ScalarProperty Name="TatliId" ColumnName="TatliId" />
+                <ScalarProperty Name="İcecekId" ColumnName="İcecekId" />
+                <ScalarProperty Name="MasaNo" ColumnName="MasaNo" />
+                <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="Tutar" ColumnName="Tutar" />
+                <ScalarProperty Name="Tür" ColumnName="Tür" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SiparisDurumu">
+            <EntityTypeMapping TypeName="kafe_otomasyonDBModel.SiparisDurumu">
+              <MappingFragment StoreEntitySet="SiparisDurumu">
+                <ScalarProperty Name="TeslimEdilmeTarih" ColumnName="TeslimEdilmeTarih" />
+                <ScalarProperty Name="SiparisHazırlanmaTarih" ColumnName="SiparisHazırlanmaTarih" />
+                <ScalarProperty Name="SiparisAlınmaTarih" ColumnName="SiparisAlınmaTarih" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="SiparisId" ColumnName="SiparisId" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="kafe_otomasyonDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tatlı">
+            <EntityTypeMapping TypeName="kafe_otomasyonDBModel.Tatlı">
+              <MappingFragment StoreEntitySet="Tatlı">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="İçindekiler" ColumnName="İçindekiler" />
+                <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yemek">
+            <EntityTypeMapping TypeName="kafe_otomasyonDBModel.Yemek">
+              <MappingFragment StoreEntitySet="Yemek">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="KategoriId" ColumnName="KategoriId" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="İçindekiler" ColumnName="İçindekiler" />
+                <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YemekKategori">
+            <EntityTypeMapping TypeName="kafe_otomasyonDBModel.YemekKategori">
+              <MappingFragment StoreEntitySet="YemekKategori">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Kategori" ColumnName="Kategori" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yetki">
+            <EntityTypeMapping TypeName="kafe_otomasyonDBModel.Yetki">
+              <MappingFragment StoreEntitySet="Yetki">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="YetkiAdi" ColumnName="YetkiAdi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

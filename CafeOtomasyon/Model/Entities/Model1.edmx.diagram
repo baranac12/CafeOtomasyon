@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e256129d056d4a57b24eaa99a50a9adb" Name="Diagram1">
+        <EntityTypeShape EntityType="kafe_otomasyonDBModel.Hesap" Width="1.5" PointX="7.5" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="kafe_otomasyonDBModel.İçecekKategori" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="kafe_otomasyonDBModel.İçecekler" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="kafe_otomasyonDBModel.kullanici" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kafe_otomasyonDBModel.Masa" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="kafe_otomasyonDBModel.OdemeTuru" Width="1.5" PointX="5.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="kafe_otomasyonDBModel.Siparis" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="kafe_otomasyonDBModel.SiparisDurumu" Width="1.5" PointX="7.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="kafe_otomasyonDBModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="kafe_otomasyonDBModel.Tatlı" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kafe_otomasyonDBModel.Yemek" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kafe_otomasyonDBModel.YemekKategori" Width="1.5" PointX="0.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="kafe_otomasyonDBModel.Yetki" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="kafe_otomasyonDBModel.FK_Hesap_Siparis" ManuallyRouted="false" />
+        <AssociationConnector Association="kafe_otomasyonDBModel.FK_İçecekler_İçecekKategori" ManuallyRouted="false" />
+        <AssociationConnector Association="kafe_otomasyonDBModel.FK_Siparis_İçecekler" ManuallyRouted="false" />
+        <AssociationConnector Association="kafe_otomasyonDBModel.FK_kullanici_Masa" ManuallyRouted="false" />
+        <AssociationConnector Association="kafe_otomasyonDBModel.FK_kullanici_Yetki" ManuallyRouted="false" />
+        <AssociationConnector Association="kafe_otomasyonDBModel.FK_Siparis_kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="kafe_otomasyonDBModel.FK_Siparis_Masa" ManuallyRouted="false" />
+        <AssociationConnector Association="kafe_otomasyonDBModel.FK_Siparis_Tatlı" ManuallyRouted="false" />
+        <AssociationConnector Association="kafe_otomasyonDBModel.FK_Siparis_Yemek" ManuallyRouted="false" />
+        <AssociationConnector Association="kafe_otomasyonDBModel.FK_SiparisDurumu_Siparis" ManuallyRouted="false" />
+        <AssociationConnector Association="kafe_otomasyonDBModel.FK_Yemek_YemekKategori" ManuallyRouted="false" />
+        <AssociationConnector Association="kafe_otomasyonDBModel.FK_Hesap_OdemeTuru" />
+        <AssociationConnector Association="kafe_otomasyonDBModel.FK_Hesap_kullanici" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
